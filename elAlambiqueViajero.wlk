@@ -1,3 +1,4 @@
+import centroDeCarreras.*
 object luke{
     var cantidadViajes = 0
     var recuerdo = null
@@ -108,17 +109,32 @@ object moto{
 }
 
 /*
-Nuevos vehículos
-Agregar estos nuevos vehículos:
-
-Uno de los autos, la "Antigualla Blindada" está integrada por varios gangsters,
- de quienes sólo conocemos sus nombres. Si bien originalmente son 7, 
- antes de la carrera podrían bajarse alguno o subirse alguno más.
-  Su velocidad se calcula a partir de la cantidad de letras de todos los nombres juntos.
-El vehículo conducido por Pierre Nodoyuna y Patán si bien es más rápido que muchos otros, 
-siempre intentan hacer trampas o perjudicar a los otros corredores y terminan tardando más en llegar a la meta.
-El profesor Locovich usa un vehículo que va cambiando de forma y simula ser otros.
- Implementarlo con una lista de posibles vehículos en los que se puede convertir
-  sucesivamente y permitir que lo haga antes que comience la carrera.
+Su velocidad se calcula a partir de la cantidad de letras de todos los nombres juntos.
 
 */
+object antiguallaBlindada {
+    const gansters = #{"pepito", "pepe", "pepa", "pepin", "pepon", "pepo", "pepi"}
+    method seBaja(unGanster) {
+        gansters.remove(unGanster)
+    }
+    method seSube(unGanster) {
+        gansters.add(unGanster)
+    }
+    method cantGansters() {
+        return gansters.size()
+    }
+    method velocidad() {
+        return gansters.sum({ganster => ganster.size()})
+    }
+}
+
+object vehiculoLocovich {
+    var formaActual = null
+    const VehiculosParaConvertirse = [alambiqueVeloz, antigualla, chatarra, moto, convertible]
+    method formaActual(unVehiculo) {
+        if (VehiculosParaConvertirse.any(unVehiculo) and (not centroDeCarreras.laCarreraEmpezo())) {
+            formaActual = unVehiculo
+        }
+    }
+
+}

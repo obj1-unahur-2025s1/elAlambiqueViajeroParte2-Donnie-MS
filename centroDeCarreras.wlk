@@ -4,6 +4,8 @@ object centroDeCarreras {
     const vehiculosAceptados = #{}
     const vehiculosRechazados = #{}
     var ciudadActual = paris
+    var laCarreraEmpezo = false
+    method laCarreraEmpezo() = laCarreraEmpezo
     method inscribir(unVehiculo) {
         if (unVehiculo.puedeLlegar(ciudadActual)) {
             vehiculosAceptados.add(unVehiculo)
@@ -30,6 +32,7 @@ object centroDeCarreras {
         vehiculosAceptados.forEach({vehiculo =>
             vehiculo.viajar(ciudadActual)
         })
+        laCarreraEmpezo = true
     }
     method obtenerGanador() {
 //El objetivo central es obtener al ganador de la carrera, que es el vehículo que completa la carrera en menos tiempo.
